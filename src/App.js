@@ -6,7 +6,7 @@ const express = require('express');
 
 class App {
     constructor() {
-        this.model = new Model();
+        
         this._app = express();
         this._app.use(express.json());
         this._app.use(express.static(path.resolve(__dirname, '../dist')));
@@ -39,11 +39,8 @@ class App {
     }
 
     onLogIn = async (req, res) => {
-        try {
-            const data = await api.logIn(req.body);
-        } catch {
-            this.model.getAdmin();
-        }
+        
+        const data = await api.logIn(req.body);
 
         res.json(data);
         res.end();
