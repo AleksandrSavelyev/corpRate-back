@@ -4,9 +4,7 @@ class Model {
 
     }
 
-    getAdmin = () => {
-        return this._adminLogin;
-    } 
+    getAdmin = () => this._adminLogin;
 }
 
-export default Model;
+module.exports = Model;
