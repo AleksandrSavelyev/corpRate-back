@@ -38,7 +38,7 @@ class App {
     }
 
     onLogIn = async (req, res) => {
-        const data;
+        const data = null;
         try {
             data = await api.logIn(req.body);
         } catch {
