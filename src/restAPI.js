@@ -76,7 +76,63 @@ const getRaitingCurentMounth  = async data => {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify({"user_token":"47840d5d91360088a07f29c0f8e0ed74",  "branch_id":1, "vote_date":"Fri 5 Nov 2020"}),
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(response => console.log(response))
+
+    return response;
+}
+
+const addCountry  = async data => {
+    const response = await fetch('http://185.129.2.58:8997/v1/addCountry.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(response => console.log(response))
+
+    return response;
+}
+
+const addCity  = async data => {
+    const response = await fetch('http://185.129.2.58:8997/v1/addCity.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(response => console.log(response))
+
+    return response;
+}
+
+const addBranch  = async data => {
+    const response = await fetch('http://185.129.2.58:8997/v1/addBranch.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+    })
+    .then(response => response.json())
+    .then(response => console.log(response))
+
+    return response;
+}
+
+const addDepartment  = async data => {
+    const response = await fetch('http://185.129.2.58:8997/v1/addDepartment.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
     })
     .then(response => response.json())
     .then(response => console.log(response))
@@ -91,4 +147,8 @@ module.exports = {
     getCommentUserTuday,
     getCommentUserByDate,
     getRaitingCurentMounth,
+    addCountry,
+    addCity,
+    addBranch,
+    addDepartment,
 }
