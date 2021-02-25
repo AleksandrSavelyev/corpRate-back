@@ -1,5 +1,3 @@
-import Model from './Model';
-
 const path = require('path');
 const api = require('./restAPI');
 const express = require('express');
