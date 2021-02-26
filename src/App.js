@@ -10,7 +10,7 @@ class App {
         this._app.use(express.static(path.resolve(__dirname, '../dist')));
         this._app.use(this.headerCors);
 
-        this._app.post('get-city', this.onGetCity)
+        this._app.post('/get-city', this.onGetCity)
         this._app.post('/log-in', this.onLogIn)
         this._app.post('/add-city', this.onAddCity)
         this._app.post('/add-branch', this.onAddBranch)
@@ -21,6 +21,7 @@ class App {
         this._app.post('/get-comment-tuday', this.onGetCommentTuday)
         this._app.post('/get-comment-by-date', this.onGetCommentByDate)
         this._app.post('/get-raiting-curent-mounth', this.onGetRaitingCurentMounth)
+        this._app.post('/register-user', this.onRegisterUser)
     }
 
     headerCors = (req, res, next) => {
@@ -121,6 +122,13 @@ class App {
         } catch (e){
             data = await this.model.getAllUsers();
         }
+
+        res.json(data);
+        res.end();
+    }
+    
+    onRegisterUser = async (req, res) => {
+        const data = await api.registerUser(req.body);
 
         res.json(data);
         res.end();
