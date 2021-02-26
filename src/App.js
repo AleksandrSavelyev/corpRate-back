@@ -1,11 +1,9 @@
 const path = require('path');
 const api = require('./restAPI');
 const express = require('express');
-const Model = require('./Model');
 
 class App {
-    constructor(model) {
-        this._model = model;
+    constructor() {
         this._app = express();
         this._app.use(express.json());
         this._app.use(express.static(path.resolve(__dirname, '../dist')));
@@ -38,12 +36,8 @@ class App {
     }
 
     onLogIn = async (req, res) => {
-        const data = null;
-        try {
-            data = await api.logIn(req.body);
-        } catch {
-            data = this._model.getAdmin;
-        }
+        const data = await api.logIn(req.body);
+        
         res.json(data);
         res.end();
     }
