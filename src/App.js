@@ -3,12 +3,14 @@ const api = require('./restAPI');
 const express = require('express');
 
 class App {
-    constructor() {
+    constructor(model) {
+        this.model = model;
         this._app = express();
         this._app.use(express.json());
         this._app.use(express.static(path.resolve(__dirname, '../dist')));
         this._app.use(this.headerCors);
 
+        this._app.post('get-city', this.onGetCity)
         this._app.post('/log-in', this.onLogIn)
         this._app.post('/add-city', this.onAddCity)
         this._app.post('/add-branch', this.onAddBranch)
@@ -29,15 +31,27 @@ class App {
     }
 
     onGetUsers = async (req, res) => {
-        const data = await api.getAllUsers(req.body);
+        const {body} = req;
+        console.log(body);
+        let data;
+        try {
+            data = await api.getAllUsers(body);
+        } catch (e){
+            data = await this.model.getAllUsers();
+        }
 
         res.json(data);
         res.end();
     }
 
     onLogIn = async (req, res) => {
-        const data = await api.logIn(req.body);
-        
+        const {body} = req;
+        let data;
+        try {
+            data = await api.logIn(body);
+        } catch(e) {
+            data = await this.model.getAdmin();
+        }
         res.json(data);
         res.end();
     }
@@ -93,6 +107,20 @@ class App {
 
     onAddDepartament = async (req, res) => {
         const data = await api.addDepartment(req.body);
+
+        res.json(data);
+        res.end();
+    }
+
+    onGetCity = async (req, res) => {
+        const {body} = req;
+        console.log(body);
+        let data;
+        try {
+            data = await api.getAllUsers(body);
+        } catch (e){
+            data = await this.model.getAllUsers();
+        }
 
         res.json(data);
         res.end();

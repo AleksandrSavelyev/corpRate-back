@@ -140,6 +140,19 @@ const addDepartment  = async data => {
     return response;
 }
 
+const getCity = async () => {
+    const response = await fetch('http://185.129.2.58:8997/v1/requestCityCountry.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    })
+    .then(response => response.json())
+    .then(response => response)
+
+    return response;
+}
+
 module.exports = {
     getAllUsers,
     logIn,
@@ -151,4 +164,5 @@ module.exports = {
     addCity,
     addBranch,
     addDepartment,
+    getCity,
 }
